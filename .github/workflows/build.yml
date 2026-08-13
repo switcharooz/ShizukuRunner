@@ -24,7 +24,7 @@ jobs:
       run: chmod +x gradlew
 
     - name: Build with Gradle
-      run: ./gradlew build   # Or 'assemble' if you only want to compile and package
+      run: ./gradlew :app:assembleDebug   # Or 'assemble' if you only want to compile and package
 
     # Optional: Upload test reports (if needed)
     # - name: Upload test reports
