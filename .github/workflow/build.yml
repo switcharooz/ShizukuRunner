@@ -1,0 +1,35 @@
+name: Build with Gradle
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout source code
+      uses: actions/checkout@v4
+
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'   # Other options: 'adopt', 'zulu', 'corretto', etc.
+
+    - name: Grant execute permission for gradlew
+      run: chmod +x gradlew
+
+    - name: Build with Gradle
+      run: ./gradlew build   # Or 'assemble' if you only want to compile and package
+
+    # Optional: Upload test reports (if needed)
+    # - name: Upload test reports
+    #   uses: actions/upload-artifact@v4
+    #   if: failure()
+    #   with:
+    #     name: test-reports
+    #     path: build/reports/tests/
